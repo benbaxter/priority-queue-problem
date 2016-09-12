@@ -21,6 +21,27 @@ public class KangooHopCalculator {
      */
     public int willMeetAtSameTime(int x1, int v1, int x2, int v2) {
 
+        if ( (x2 > x1 && v2 > v1) || (x1 > x2 && v1 > v2) ) {
+            return -1;
+        }
+        /*
+            x1 + j * v1 = x2 + j * v2
+            j*v1 - j*v2 = x2 - x1
+            j(v1-v2)=x2-x1
+            j=(x2-x1)/(v1-v2)
+        */
+        if( v1 == v2 && x1 == x2 ) {
+            return 0;
+        } else if (v1==v2 && x1 != x2) {
+            return -1;
+        } else {
+            final int x = Math.abs(x2 - x1);
+            final int v = Math.abs(v1 - v2);
+            if ( x % v == 0 ) {
+                return x / v;
+            }
+        }
+
         return -1;
     }
 
